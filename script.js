@@ -74,3 +74,14 @@ function showFormMessage(message, type) {
   formNote.className = "form-note " + type;
 }
 document.getElementById("year").textContent = new Date().getFullYear();
+
+document.querySelectorAll(".project-details").forEach(button => {
+  button.addEventListener("click", () => {
+    const details = button.nextElementSibling;
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!isExpanded));
+    details.hidden = isExpanded;
+    button.querySelector("span").textContent = isExpanded ? "＋" : "−";
+    button.firstChild.textContent = isExpanded ? "View details " : "Hide details ";
+  });
+});
